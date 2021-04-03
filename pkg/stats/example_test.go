@@ -2,7 +2,7 @@ package stats
 
 import (
 	"fmt"
-	"github.com/bekhruzdilshod/bankdouble/pkg/types"
+	"github.com/bekhruzdilshod/bankdouble/v2/pkg/types"
 )
 
 

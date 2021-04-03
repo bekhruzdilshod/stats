@@ -1,5 +1,5 @@
-module github.com/bekhruzdilshod/stats
+module github.com/bekhruzdilshod/stats/v2
 
 go 1.16
 
-require github.com/bekhruzdilshod/bankdouble v0.0.0-20210403222753-64f681633203 // indirect
+require github.com/bekhruzdilshod/bankdouble/v2 v2.0.0

@@ -140,3 +140,50 @@ func TestCategoriesAvg(t *testing.T) {
 		t.Errorf("Invalid result! Expected: %v, Actual: %v", expected, result)
 	}
 }
+
+func TestPeriodDynamic_empty(t *testing.T) {
+	first := map[types.Category]types.Money{}
+	second := map[types.Category]types.Money{}
+
+	result := PeriodDynamic(first, second)
+
+	if len(result) != 0 {
+		t.Error("Invalid result! Expected zero (0) for empty map!")
+	}
+
+}
+
+func TestPeriodDynamic_nil(t *testing.T) {
+	var first map[types.Category]types.Money
+	var second map[types.Category]types.Money
+
+	result := PeriodDynamic(first, second)
+
+	if len(result) != 0 {
+		t.Error("Invalid result! Expected zero (0) for empty map!")
+	}
+
+}
+
+func TestPeriodDynamic(t *testing.T) {
+	first := map[types.Category]types.Money{
+		"auto": 10,
+		"food": 20,
+	}
+
+	second := map[types.Category]types.Money{
+		"food": 20,
+	}
+
+	expected := map[types.Category]types.Money{
+		"auto": -10,
+		"food": 0,
+	}
+
+	result := PeriodDynamic(first, second)
+
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Invalid result! Expected: %v, Actual: %v", expected, result)
+	}
+	
+}

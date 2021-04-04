@@ -98,3 +98,45 @@ func TestCategoriesTotal(t *testing.T) {
 		t.Errorf("Invalid result! Expected: %v, Actual: %v", expected, result)
 	}
 }
+
+func TestCategoriesAvg_empty(t *testing.T) {
+	payments := []types.Payment{}
+
+	result := CategoriesAvg(payments)
+
+	if len(result) != 0 {
+		t.Error("Invalid result! Expected zero (0) for empty slice!")
+	}
+}
+
+func TestCategoriesAvg_nil(t *testing.T) {
+	var payments []types.Payment
+
+	result := CategoriesAvg(payments)
+
+	if len(result) != 0 {
+		t.Error("Invalid result! Expected zero (0) for nil slice!")
+	}
+
+}
+
+
+func TestCategoriesAvg(t *testing.T) {
+	payments := []types.Payment{
+		{Category: "auto", Amount: 100},
+		{Category: "auto", Amount: 100},
+		{Category: "auto", Amount: 100},
+		{Category: "fun", Amount: 500},
+	}
+
+	expected := map[types.Category]types.Money{
+		"auto": 100,
+		"fun": 500,
+	}
+
+	result := CategoriesAvg(payments)
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("Invalid result! Expected: %v, Actual: %v", expected, result)
+	}
+}

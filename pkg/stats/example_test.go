@@ -12,12 +12,15 @@ func ExampleAvg() {
 		{
 			Amount: 100,
 			Category: "Common",
+			Status: types.StatusInProgress,
 		},
 		{
 			Amount: 100,
+			Status: types.StatusOk,
 		},
 		{
 			Amount: 100,
+			Status: types.StatusFail,
 		},
 	}
 
